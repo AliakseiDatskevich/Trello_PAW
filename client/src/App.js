@@ -40,7 +40,7 @@ class App extends Component {
       let array = [];
       let tasks = this.state.tasks
       for (let list of this.state.lists) {
-        array.push(<Container id={list.id} text={list.text} list={tasks.filter((task) => task.list == list.id)} /> );
+        array.push(<Container id={list.id} text={list.text} list={tasks.filter((task) => task.list === list.id)} /> );
 
       }
       return array;

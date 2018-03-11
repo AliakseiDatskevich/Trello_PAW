@@ -1,7 +1,3 @@
-.{
-  background-color: #B2D3EF
-}
-
 .App {
   text-align: center;
 }
@@ -20,6 +16,18 @@
 
 .App-title {
   font-size: 1.5em;
+}
+
+.Card {
+  border: 1px solid black;
+	padding: 0.5rem 1rem;
+	margin: .5rem;
+	backgroundColor: white;
+	/* cursor: move; */
+	height : 30px;
+}
+.Card:hover {
+  background-color: lightblue;
 }
 
 /* .App-intro {

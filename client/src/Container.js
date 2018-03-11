@@ -49,8 +49,8 @@ class Container extends Component {
 		const isActive = canDrop && isOver;
 		const style = {
 			width: "200px",
-			height: "404px",
-			border: '1px dashed gray'
+			height: "100%",
+			border: '1px solid black'
 		};
 		const nameStyle = {
 			 fontWeight: 'bold'

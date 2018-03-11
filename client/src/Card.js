@@ -3,14 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import flow from 'lodash/flow';
 
-const style = {
-	border: '1px solid black',
-	padding: '0.5rem 1rem',
-	margin: '.5rem',
-	backgroundColor: 'white',
-	cursor: 'move',
-	height : '30px'
-};
+import './App.css';
 
 class Card extends Component {
 
@@ -19,7 +12,7 @@ class Card extends Component {
 		const opacity = isDragging ? 0 : 1;
 
 		return connectDragSource(connectDropTarget(
-			<div style={{ ...style, opacity }}>
+			<div className="Card" style={{opacity }}>
 				{card.text}
 			</div>
 		));
