@@ -9,6 +9,9 @@
   "dependencies": {
     "express": "^4.16.2",
     "immutability-helper": "^2.6.6",
+    "react": "^16.2.0",
+    "react-scripts": "^1.1.1",
+    "react-dom": "^16.2.0",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4"
   },
