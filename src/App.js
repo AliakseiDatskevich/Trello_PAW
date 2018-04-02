@@ -14,25 +14,49 @@ class App extends Component {
       lists : [],
       tasks : []
     };
+
   }
 
   componentDidMount() {
-    this.callApi()
-    .then(res => {
-      this.setState({ lists: res.lists, tasks: res.tasks });
-      // this.setState({ tasks: res.tasks });
+
+    var firebase = require("firebase");
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBpg8JBWHV9d4OCX5pJEm3qA6oh68SKSTs",
+      authDomain: "trello-paw.firebaseapp.com",
+      databaseURL: "https://trello-paw.firebaseio.com",
+      projectId: "trello-paw",
+      storageBucket: "",
+      messagingSenderId: "1062369713071"
+    };
+    firebase.initializeApp(config);
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+
+      firebase.database().ref().once('value').then((snapshot) => {
+        var jsonObj = snapshot.exportVal();
+        this.setState({ lists: Object.values(jsonObj.lists), tasks: Object.values(jsonObj.tasks) });
+      }).catch(err => console.log(err));
+
     })
-    .catch(err => console.log(err));
+
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/board');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
 
   renderElements() {
 
